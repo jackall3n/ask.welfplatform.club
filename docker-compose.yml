@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  ask-welfplatform-club:
+    container_name: ask-welfplatform-club
+    restart: always
+    build: .
+    command: yarn start
+    environment:
+      PORT: 80
+      VIRTUAL_HOST: ask.welfplatform.club
+      LETSENCRYPT_HOST: ask.welfplatform.club
+      LETSENCRYPT_EMAIL: hello@jackallen.me
+    expose:
+      - 80
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
+    name: proxy-network
+
